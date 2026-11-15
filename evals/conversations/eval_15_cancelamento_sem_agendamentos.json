@@ -1,0 +1,30 @@
+{
+  "id": "eval_15_cancelamento_sem_agendamentos",
+  "category": "remarcacao_cancelamento",
+  "title": "Tentativa de cancelamento por cliente sem agendamentos",
+  "description": "Cliente novo ou sem histórico pede cancelamento. Agente avisa educadamente que não há agendamentos ativos vinculados.",
+  "client": {
+    "name": "Thiago Silva",
+    "number": "5511973330001"
+  },
+  "has_previous_appointments": false,
+  "turns": [
+    {
+      "role": "user",
+      "content": "Oi, sou o Thiago Silva. Quero cancelar o agendamento de amanhã."
+    }
+  ],
+  "expected": {
+    "tools_called": [],
+    "target_step": "REGISTER_CLIENT",
+    "forbidden_tools": [
+      "cancel_schedule_tool",
+      "edit_schedule_tool"
+    ],
+    "criteria": [
+      "Não tentou cancelar agendamento inexistente",
+      "Informou educadamente ausência de agendamentos no cadastro",
+      "Se ofereceu para criar um novo agendamento"
+    ]
+  }
+}

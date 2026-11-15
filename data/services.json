@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Banho e Tosa de Cachorros",
+    "price": 100.0,
+    "duration_minutes": 60,
+    "allowed_pets": ["dog"],
+    "description": "Banho completo e tosa estilizada feita por profissionais especializados em diferentes raças."
+  },
+  {
+    "id": 2,
+    "name": "Consulta Veterinária",
+    "price": 60.0,
+    "duration_minutes": 30,
+    "allowed_pets": ["dog", "cat", "rabbit", "bird"],
+    "description": "Consulta detalhada com veterinário especializado, incluindo análise de saúde geral e recomendações personalizadas."
+  },
+  {
+    "id": 3,
+    "name": "Vacinação de Animais",
+    "price": 80.0,
+    "duration_minutes": 20,
+    "allowed_pets": ["dog", "cat", "rabbit", "bird"],
+    "description": "Aplicação de vacinas essenciais por profissionais experientes, com registro e orientação pós-vacinação."
+  },
+  {
+    "id": 4,
+    "name": "Higiene Bucal",
+    "price": 120.0,
+    "duration_minutes": 40,
+    "allowed_pets": ["dog", "cat"],
+    "description": "Limpeza e cuidado dental profissional, prevenindo problemas de saúde bucal e mau hálito."
+  },
+  {
+    "id": 5,
+    "name": "Acompanhamento Nutricional",
+    "price": 150.0,
+    "duration_minutes": 50,
+    "allowed_pets": ["dog", "cat", "rabbit"],
+    "description": "Avaliação personalizada da alimentação do animal, com plano nutricional adequado à idade, raça e saúde."
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "id": "eval_06_horario_domingo_fechado",
+  "category": "horario_ocupado",
+  "title": "Tentativa de agendamento em domingo (clínica fechada)",
+  "description": "Cliente tenta marcar atendimento para um domingo (2026-11-15). O agente recusa informando que a clínica não abre aos domingos e sugere dias úteis ou sábado.",
+  "client": {
+    "name": "Juliana Dias",
+    "number": "5511972220001"
+  },
+  "initial_state": {
+    "step": "CHOOSE_DATE",
+    "client_info": {
+      "id": 1,
+      "name": "Juliana Dias",
+      "number": "5511972220001"
+    },
+    "schedule_info": {
+      "service_id": 2,
+      "pet_id": 1
+    }
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Queria marcar a consulta pro próximo domingo dia 2026-11-15 às 10:00, é possível?"
+    },
+    {
+      "role": "user",
+      "content": "Ah entendi que não abre domingo. Pode ser na segunda dia 2026-11-16 às 10:00 então?"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "check_availability_tool",
+      "choose_date_tool"
+    ],
+    "target_step": "CONFIRM_SCHEDULE",
+    "forbidden_tools": [],
+    "criteria": [
+      "Agente verificou que domingo está indisponível ('Clínica fechada neste dia')",
+      "Não confirmou data inválida de domingo",
+      "Aceitou e gravou a segunda-feira 2026-11-16 às 10:00"
+    ]
+  }
+}

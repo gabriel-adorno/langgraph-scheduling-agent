@@ -1,0 +1,36 @@
+{
+  "id": "eval_25_produtos_e_localizacao",
+  "category": "produtos_e_localizacao",
+  "title": "Consulta de produtos da loja e envio de localização da clínica",
+  "description": "Cliente pergunta se a clínica tem coleira e ração à venda e pede a localização/endereço no WhatsApp.",
+  "client": {
+    "name": "Felipe Neto",
+    "number": "5511976660002"
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Olá, vcs vendem coleira na clínica? Tem em estoque?"
+    },
+    {
+      "role": "user",
+      "content": "Ótimo! Onde fica a clínica de vocês? Pode me mandar a localização?"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "search_products_tool",
+      "send_location_tool"
+    ],
+    "target_step": "REGISTER_CLIENT",
+    "forbidden_tools": [
+      "confirm_schedule_tool"
+    ],
+    "criteria": [
+      "Agente chamou search_products_tool com o termo 'coleira'",
+      "Informou estoque/preço do produto",
+      "Chamou send_location_tool enviando o endereço/localização da clínica",
+      "Respondeu de forma precisa e prestativa"
+    ]
+  }
+}

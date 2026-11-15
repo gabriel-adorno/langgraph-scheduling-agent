@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "client_id": 1,
+    "name": "Floquinho",
+    "type": "dog",
+    "breed": "Shih Tzu",
+    "size": "small",
+    "sex": "male",
+    "age": 3,
+    "weight": 6.5,
+    "notes": "Ama banhos quentes"
+  }
+]

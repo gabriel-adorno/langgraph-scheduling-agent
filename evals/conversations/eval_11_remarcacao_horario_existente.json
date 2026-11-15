@@ -1,0 +1,36 @@
+{
+  "id": "eval_11_remarcacao_horario_existente",
+  "category": "remarcacao_cancelamento",
+  "title": "Remarcação de horário de agendamento já existente",
+  "description": "Cliente que já possui agendamento pede para mudar o dia e hora. O agente lista os agendamentos existentes e executa edit_schedule_tool.",
+  "client": {
+    "name": "Gabriel",
+    "number": "5511999999999"
+  },
+  "has_previous_appointments": true,
+  "turns": [
+    {
+      "role": "user",
+      "content": "Olá! Preciso remarcar o agendamento do Floquinho."
+    },
+    {
+      "role": "user",
+      "content": "Quero mudar para dia 2026-11-25 às 14:00, por favor."
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "get_past_schedules_list_tool",
+      "edit_schedule_tool"
+    ],
+    "target_step": "MANAGE_SCHEDULE",
+    "forbidden_tools": [
+      "cancel_schedule_tool"
+    ],
+    "criteria": [
+      "Agente chamou get_past_schedules_list_tool para identificar o agendamento",
+      "Agente chamou edit_schedule_tool com nova data e hora",
+      "Não cancelou por engano"
+    ]
+  }
+}

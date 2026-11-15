@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "client_id": 1,
+    "service_id": 1,
+    "service_ids": [
+      1
+    ],
+    "pet_id": 1,
+    "appointment_date": "2026-11-20",
+    "appointment_time": "15:00",
+    "duration_minutes": 60,
+    "status": "SCHEDULED"
+  },
+  {
+    "id": 2,
+    "client_id": 1,
+    "pet_id": 1,
+    "service_id": 1,
+    "service_ids": [
+      1
+    ],
+    "appointment_date": "2026-11-16",
+    "appointment_time": "08:00",
+    "duration_minutes": 60,
+    "status": "SCHEDULED"
+  }
+]

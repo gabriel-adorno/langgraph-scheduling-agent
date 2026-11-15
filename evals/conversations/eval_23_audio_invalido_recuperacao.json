@@ -1,0 +1,35 @@
+{
+  "id": "eval_23_audio_invalido_recuperacao",
+  "category": "audio",
+  "title": "Recuperação graciosa de áudio inaudível ou corrompido",
+  "description": "Mensagem de áudio chega sem dados válidos ou inaudível. Agente avisa com gentileza e pede para o usuário repetir ou digitar.",
+  "client": {
+    "name": "Paulo Coelho",
+    "number": "5511975550002"
+  },
+  "turns": [
+    {
+      "role": "user",
+      "mode": "audio",
+      "content": "[audio_not_processed]"
+    },
+    {
+      "role": "user",
+      "mode": "text",
+      "content": "Oi, acho que meu áudio falhou! Sou o Paulo e quero agendar vacinação pro meu cão."
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "register_client_tool",
+      "choose_service_tool"
+    ],
+    "target_step": "CHOOSE_PET",
+    "forbidden_tools": [],
+    "criteria": [
+      "Tratou o áudio não processado sem quebrar o sistema",
+      "Respondeu educadamente na mensagem de texto subsequente",
+      "Conduziu o cadastro e serviço normalmente"
+    ]
+  }
+}

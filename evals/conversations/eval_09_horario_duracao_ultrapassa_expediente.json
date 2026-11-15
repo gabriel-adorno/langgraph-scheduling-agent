@@ -1,0 +1,45 @@
+{
+  "id": "eval_09_horario_duracao_ultrapassa_expediente",
+  "category": "horario_ocupado",
+  "title": "Duração do serviço ultrapassa o horário de fechamento",
+  "description": "Cliente pede serviço de 60 minutos às 17:30 numa sexta (expediente encerra às 18:00). Agente recusa pois ultrapassa expediente e sugere horário anterior.",
+  "client": {
+    "name": "Eduardo Paes",
+    "number": "5511972220004"
+  },
+  "initial_state": {
+    "step": "CHOOSE_DATE",
+    "client_info": {
+      "id": 1,
+      "name": "Eduardo",
+      "number": "5511972220004"
+    },
+    "schedule_info": {
+      "service_id": 1,
+      "pet_id": 1
+    }
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Quero banho e tosa (60 min) na sexta 2026-11-20 às 17:30."
+    },
+    {
+      "role": "user",
+      "content": "Ah, fecha às 18h né! Pode ser às 16:30 então?"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "check_availability_tool",
+      "choose_date_tool"
+    ],
+    "target_step": "CONFIRM_SCHEDULE",
+    "forbidden_tools": [],
+    "criteria": [
+      "Detectou que serviço ultrapassa o horário de encerramento às 18:00",
+      "Recusou o horário das 17:30",
+      "Aprovou 16:30 que finaliza exatamente às 17:30"
+    ]
+  }
+}

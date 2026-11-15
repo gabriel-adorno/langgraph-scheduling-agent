@@ -1,0 +1,34 @@
+{
+  "clinic_name": "Petfy Clínica & Petshop",
+  "address": "Av. Paulista, 1000 - Bela Vista, São Paulo - SP",
+  "latitude": -23.561684,
+  "longitude": -46.655981,
+  "timezone": "America/Sao_Paulo",
+  "working_hours": {
+    "monday": {
+      "start": "08:00",
+      "end": "18:00"
+    },
+    "tuesday": {
+      "start": "08:00",
+      "end": "18:00"
+    },
+    "wednesday": {
+      "start": "08:00",
+      "end": "18:00"
+    },
+    "thursday": {
+      "start": "08:00",
+      "end": "18:00"
+    },
+    "friday": {
+      "start": "08:00",
+      "end": "18:00"
+    },
+    "saturday": {
+      "start": "08:00",
+      "end": "14:00"
+    },
+    "sunday": null
+  }
+}

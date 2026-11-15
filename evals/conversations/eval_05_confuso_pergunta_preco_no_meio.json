@@ -1,0 +1,45 @@
+{
+  "id": "eval_05_confuso_pergunta_preco_no_meio",
+  "category": "cliente_confuso",
+  "title": "Cliente pergunta preço de outro serviço no meio do cadastro do pet",
+  "description": "Durante o cadastro do pet para banho, o cliente interrompe perguntando quanto custa consulta veterinária. O agente responde o preço e retoma o agendamento.",
+  "client": {
+    "name": "Beatriz Ramos",
+    "number": "5511971110005"
+  },
+  "initial_state": {
+    "step": "CHOOSE_PET",
+    "client_info": {
+      "id": 1,
+      "name": "Beatriz Ramos",
+      "number": "5511971110005"
+    },
+    "schedule_info": {
+      "service_id": 1
+    }
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Antes de falar do meu cachorro, quanto custa uma consulta veterinária com vocês?"
+    },
+    {
+      "role": "user",
+      "content": "Entendi! Bom, pro banho vai ser o Pipoca, um maltês macho de 2 anos, pequeno, 4kg"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "get_services_list_tool",
+      "register_pet_tool",
+      "choose_pet_tool"
+    ],
+    "target_step": "CHOOSE_DATE",
+    "forbidden_tools": [],
+    "criteria": [
+      "Agente informou o valor da consulta (R$ 60)",
+      "Agente retomou a etapa de pet sem perder o serviço de banho",
+      "Registrou o Pipoca e avançou para CHOOSE_DATE"
+    ]
+  }
+}

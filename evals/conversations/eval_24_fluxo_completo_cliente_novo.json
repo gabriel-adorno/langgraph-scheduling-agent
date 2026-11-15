@@ -1,0 +1,57 @@
+{
+  "id": "eval_24_fluxo_completo_cliente_novo",
+  "category": "fluxo_padrao",
+  "title": "Fluxo feliz completo ponta a ponta (novo cliente até confirmação)",
+  "description": "Cliente novo chega, se cadastra, escolhe banho e tosa, cadastra o cão Duque, seleciona data livre e confirma o agendamento.",
+  "client": {
+    "name": "Helena Rost",
+    "number": "5511976660001"
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Olá! Gostaria de agendar um serviço pro meu pet. Meu nome é Helena."
+    },
+    {
+      "role": "user",
+      "content": "Quero Banho e Tosa de Cachorros."
+    },
+    {
+      "role": "user",
+      "content": "O pet é o Duque, um Golden Retriever de 4 anos, porte grande, macho, 32kg, muito dócil."
+    },
+    {
+      "role": "user",
+      "content": "Pode ser na segunda 2026-11-16 às 14:00?"
+    },
+    {
+      "role": "user",
+      "content": "Sim, tudo certo! Pode confirmar o agendamento."
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "register_client_tool",
+      "choose_service_tool",
+      "register_pet_tool",
+      "choose_pet_tool",
+      "check_availability_tool",
+      "choose_date_tool",
+      "get_schedule_summary_tool",
+      "confirm_schedule_tool"
+    ],
+    "target_step": "CHOOSE_SERVICE",
+    "forbidden_tools": [
+      "cancel_schedule_tool"
+    ],
+    "criteria": [
+      "Registrou cliente Helena",
+      "Selecionou Banho e Tosa (ID 1)",
+      "Cadastrou e associou o cão Duque",
+      "Verificou disponibilidade para 14:00 em dia útil",
+      "Chamou get_schedule_summary_tool antes de confirmar",
+      "Executou confirm_schedule_tool criando novo agendamento no banco",
+      "Chamou reset_state_node preservando cliente e zerando schedule_info"
+    ]
+  }
+}

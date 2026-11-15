@@ -1,0 +1,49 @@
+{
+  "id": "eval_03_confuso_informacoes_fragmentadas",
+  "category": "cliente_confuso",
+  "title": "Cliente envia dados fragmentados em várias mensagens",
+  "description": "Cliente manda mensagens curtas e picadas com informações incompletas. O agente reúne os dados progressivamente.",
+  "client": {
+    "name": "Fernanda Costa",
+    "number": "5511971110003"
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "oie"
+    },
+    {
+      "role": "user",
+      "content": "fernanda"
+    },
+    {
+      "role": "user",
+      "content": "vacina"
+    },
+    {
+      "role": "user",
+      "content": "quero vacinar meu cachorro sim"
+    },
+    {
+      "role": "user",
+      "content": "Thor, golden, 3 anos, macho, 30kg, saudável"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "register_client_tool",
+      "choose_service_tool",
+      "register_pet_tool"
+    ],
+    "target_step": "CHOOSE_DATE",
+    "forbidden_tools": [
+      "cancel_schedule_tool"
+    ],
+    "criteria": [
+      "Agente tratou mensagens curtas sem quebrar o fluxo",
+      "Identificou o nome Fernanda",
+      "Identificou serviço de vacinação",
+      "Cadastrou o pet Thor com porte grande"
+    ]
+  }
+}

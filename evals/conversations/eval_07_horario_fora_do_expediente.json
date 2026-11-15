@@ -1,0 +1,49 @@
+{
+  "id": "eval_07_horario_fora_do_expediente",
+  "category": "horario_ocupado",
+  "title": "Horário solicitado fora do expediente (noite/madrugada)",
+  "description": "Cliente pede agendamento às 21:00 ou 06:00. Agente informa horário comercial (08:00 às 18:00) e não permite agendar fora.",
+  "client": {
+    "name": "Marcelo Neves",
+    "number": "5511972220002"
+  },
+  "initial_state": {
+    "step": "CHOOSE_DATE",
+    "client_info": {
+      "id": 1,
+      "name": "Marcelo Neves",
+      "number": "5511972220002"
+    },
+    "schedule_info": {
+      "service_id": 1,
+      "pet_id": 1
+    }
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Vocês atendem à noite? Queria levar meu pet dia 2026-11-18 às 21:00."
+    },
+    {
+      "role": "user",
+      "content": "Ok, qual o último horário disponível desse dia então?"
+    },
+    {
+      "role": "user",
+      "content": "Pode marcar pras 16:00 então!"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "check_availability_tool",
+      "choose_date_tool"
+    ],
+    "target_step": "CONFIRM_SCHEDULE",
+    "forbidden_tools": [],
+    "criteria": [
+      "Agente informou que 21:00 está fora do horário de funcionamento",
+      "Agente manteve o cliente no fluxo",
+      "Agendou 16:00 após confirmação"
+    ]
+  }
+}

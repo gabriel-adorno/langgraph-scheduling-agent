@@ -1,0 +1,44 @@
+{
+  "id": "eval_16_fora_escopo_animal_incompativel",
+  "category": "fora_do_escopo",
+  "title": "Solicitação de tosa para animal silvestre/incompatível",
+  "description": "Cliente pede tosa para uma jiboia ou iguana. O agente informa que o serviço de banho e tosa é exclusivo para cães e não atende répteis.",
+  "client": {
+    "name": "Bruno Covas",
+    "number": "5511974440001"
+  },
+  "initial_state": {
+    "step": "CHOOSE_SERVICE",
+    "client_info": {
+      "id": 1,
+      "name": "Bruno",
+      "number": "5511974440001"
+    },
+    "schedule_info": {}
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Vocês fazem tosa completa em cobra jiboia?"
+    },
+    {
+      "role": "user",
+      "content": "E em cavalo?"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "get_services_list_tool"
+    ],
+    "target_step": "CHOOSE_SERVICE",
+    "forbidden_tools": [
+      "choose_service_tool",
+      "confirm_schedule_tool"
+    ],
+    "criteria": [
+      "Agente recusou atendimento de animais não suportados",
+      "Explicou que banho e tosa é para cães/gatos suportados",
+      "Manteve tom profissional e acolhedor sem alucinar suporte a animais silvestres"
+    ]
+  }
+}

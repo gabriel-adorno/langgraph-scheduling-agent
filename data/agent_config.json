@@ -1,0 +1,14 @@
+{
+  "agent_name": "Júlia",
+  "is_active": true,
+  "tone": "friendly",
+  "language": "pt-BR",
+  "formality": "informal",
+  "emoji_use": "moderate",
+  "audio_use": "moderate",
+  "voice_style": "warm",
+  "voice": "alloy",
+  "process_audio": true,
+  "response_delay": 0,
+  "evolution_info": null
+}

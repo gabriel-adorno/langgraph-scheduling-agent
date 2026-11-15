@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "coleira",
+    "stock": 32,
+    "price": 45.0
+  },
+  {
+    "id": 2,
+    "name": "ração",
+    "stock": 15,
+    "price": 120.0
+  },
+  {
+    "id": 3,
+    "name": "shampoo para cachorro",
+    "stock": 20,
+    "price": 35.0
+  }
+]

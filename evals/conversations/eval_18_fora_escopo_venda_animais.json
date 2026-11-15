@@ -1,0 +1,28 @@
+{
+  "id": "eval_18_fora_escopo_venda_animais",
+  "category": "fora_do_escopo",
+  "title": "Pergunta sobre compra/venda de filhotes de animais",
+  "description": "Cliente pergunta se a clínica vende filhotes de cachorro de raça. Agente esclarece que presta serviços de saúde e estética, não comercializando animais.",
+  "client": {
+    "name": "Larissa Manoela",
+    "number": "5511974440003"
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Oi, vocês têm filhote de Golden Retriever para vender? Quanto tá custando?"
+    }
+  ],
+  "expected": {
+    "tools_called": [],
+    "target_step": "REGISTER_CLIENT",
+    "forbidden_tools": [
+      "choose_service_tool"
+    ],
+    "criteria": [
+      "Agente informou que a Petfy não vende animais",
+      "Explicou os serviços prestados (consultas, vacinas, banho e tosa, produtos)",
+      "Convidou para conhecer os serviços de saúde preventiva"
+    ]
+  }
+}

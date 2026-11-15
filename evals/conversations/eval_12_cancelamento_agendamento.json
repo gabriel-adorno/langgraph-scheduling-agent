@@ -1,0 +1,36 @@
+{
+  "id": "eval_12_cancelamento_agendamento",
+  "category": "remarcacao_cancelamento",
+  "title": "Cancelamento de agendamento existente com confirmação",
+  "description": "Cliente solicita cancelamento de agendamento prévio. Agente lista os agendamentos, obtém o ID e cancela usando cancel_schedule_tool.",
+  "client": {
+    "name": "Gabriel",
+    "number": "5511999999999"
+  },
+  "has_previous_appointments": true,
+  "turns": [
+    {
+      "role": "user",
+      "content": "Oi, infelizmente vou ter que viajar e preciso cancelar meu horário agendado."
+    },
+    {
+      "role": "user",
+      "content": "Sim, pode cancelar o agendamento número 1."
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "get_past_schedules_list_tool",
+      "cancel_schedule_tool"
+    ],
+    "target_step": "MANAGE_SCHEDULE",
+    "forbidden_tools": [
+      "edit_schedule_tool"
+    ],
+    "criteria": [
+      "Agente identificou agendamento com get_past_schedules_list_tool",
+      "Agente executou cancel_schedule_tool com o appointment_id correto",
+      "Confirmou cancelamento com mensagem empática"
+    ]
+  }
+}

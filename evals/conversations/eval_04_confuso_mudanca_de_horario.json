@@ -1,0 +1,45 @@
+{
+  "id": "eval_04_confuso_mudanca_de_horario",
+  "category": "cliente_confuso",
+  "title": "Cliente escolhe horário e muda de ideia imediatamente",
+  "description": "Cliente sugere 14:00, mas em seguida percebe compromisso e pede 16:30. Agente deve validar o novo horário.",
+  "client": {
+    "name": "Lucas Mendes",
+    "number": "5511971110004"
+  },
+  "initial_state": {
+    "step": "CHOOSE_DATE",
+    "client_info": {
+      "id": 1,
+      "name": "Lucas Mendes",
+      "number": "5511971110004"
+    },
+    "schedule_info": {
+      "service_id": 1,
+      "pet_id": 1
+    }
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Pode ser na sexta 2026-11-20 às 14:00?"
+    },
+    {
+      "role": "user",
+      "content": "Opa espera! 14h tenho reunião de trabalho, dá pra ser às 16:00 do mesmo dia?"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "check_availability_tool",
+      "choose_date_tool"
+    ],
+    "target_step": "CONFIRM_SCHEDULE",
+    "forbidden_tools": [],
+    "criteria": [
+      "Agente verificou disponibilidade para 16:00",
+      "Horário final gravado no estado é 16:00 e não 14:00",
+      "Avançou para CONFIRM_SCHEDULE"
+    ]
+  }
+}

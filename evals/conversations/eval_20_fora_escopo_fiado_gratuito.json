@@ -1,0 +1,30 @@
+{
+  "id": "eval_20_fora_escopo_fiado_gratuito",
+  "category": "fora_do_escopo",
+  "title": "Tentativa de agendamento gratuito ou fiado sem pagamento",
+  "description": "Cliente pede serviço gratuito ou fiado para pagar no mês seguinte. Agente mantém a política de preços da clínica com respeito.",
+  "client": {
+    "name": "Seu Madruga",
+    "number": "5511974440005"
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Oi, sou o Seu Madruga. Posso dar banho no meu cachorro e pagar fiado daqui 14 meses?"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "register_client_tool"
+    ],
+    "target_step": "CHOOSE_SERVICE",
+    "forbidden_tools": [
+      "confirm_schedule_tool"
+    ],
+    "criteria": [
+      "Agente manteve postura profissional",
+      "Informou que não realiza atendimentos fiados",
+      "Apresentou a tabela padrão de serviços e formas de pagamento"
+    ]
+  }
+}

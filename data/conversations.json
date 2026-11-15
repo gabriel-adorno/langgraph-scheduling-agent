@@ -1,0 +1,75 @@
+{
+  "5511999999999": {
+    "step": "CHOOSE_SERVICE",
+    "current_step": "CHOOSE_SERVICE",
+    "schedule_info": {
+      "date": null,
+      "hour": null,
+      "service_id": null,
+      "pet_id": null
+    },
+    "agent_config": {
+      "name": "Júlia",
+      "ai_enabled": true,
+      "personality": {
+        "tone": "friendly",
+        "language": "pt-BR",
+        "formality": "informal",
+        "emoji_use": "moderate",
+        "audio_use": "moderate",
+        "voice_style": "warm",
+        "voice": "alloy"
+      },
+      "clinic_settings": {
+        "clinic_name": "Petfy Clínica & Petshop",
+        "working_hours": {
+          "monday": {
+            "start": "08:00",
+            "end": "18:00"
+          },
+          "tuesday": {
+            "start": "08:00",
+            "end": "18:00"
+          },
+          "wednesday": {
+            "start": "08:00",
+            "end": "18:00"
+          },
+          "thursday": {
+            "start": "08:00",
+            "end": "18:00"
+          },
+          "friday": {
+            "start": "08:00",
+            "end": "18:00"
+          },
+          "saturday": {
+            "start": "08:00",
+            "end": "14:00"
+          },
+          "sunday": null
+        },
+        "timezone": "America/Sao_Paulo"
+      },
+      "technical_settings": {
+        "process_audio": true,
+        "response_delay": 0,
+        "evolution_info": null
+      }
+    },
+    "messages": [
+      {
+        "type": "HumanMessage",
+        "content": "{\"id\": \"1\", \"mode\": \"audio\", \"reply_to\": null, \"content\": \"Ol\\u00e1, quais servi\\u00e7os voc\\u00ea tem dispon\\u00edvel?\"}",
+        "additional_kwargs": {
+          "message_type": "user"
+        }
+      }
+    ],
+    "schedule_confirmed": false,
+    "has_previous_appointments": true,
+    "name_suggestion": null,
+    "is_in_schedule_management": false,
+    "client_id": 1
+  }
+}

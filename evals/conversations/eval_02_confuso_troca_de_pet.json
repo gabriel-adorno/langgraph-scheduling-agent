@@ -1,0 +1,44 @@
+{
+  "id": "eval_02_confuso_troca_de_pet",
+  "category": "cliente_confuso",
+  "title": "Cliente muda de ideia sobre qual pet levar",
+  "description": "Cliente começa cadastrando Rex (cão), mas depois muda de ideia e decide agendar para a gatinha Luna.",
+  "client": {
+    "name": "Rodrigo Lima",
+    "number": "5511971110002"
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Olá, meu nome é Rodrigo Lima. Gostaria de agendar uma consulta veterinária."
+    },
+    {
+      "role": "user",
+      "content": "Sim, consulta veterinária confirmada!"
+    },
+    {
+      "role": "user",
+      "content": "Eu ia levar meu cachorro Rex, mas na verdade a gata Luna que tá espirrando. Ela tem 2 anos, fêmea, sem raça definida, pesa 4kg."
+    },
+    {
+      "role": "user",
+      "content": "Isso mesmo, é pra Luna gatinha!"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "register_client_tool",
+      "choose_service_tool",
+      "register_pet_tool",
+      "choose_pet_tool"
+    ],
+    "target_step": "CHOOSE_DATE",
+    "forbidden_tools": [],
+    "criteria": [
+      "Agente registrou cliente Rodrigo",
+      "Agente registrou pet do tipo gato (Luna)",
+      "Agente associou a gata Luna e não o cão Rex",
+      "Avançou para escolha de data"
+    ]
+  }
+}

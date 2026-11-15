@@ -1,0 +1,32 @@
+{
+  "id": "eval_13_consulta_historico_agendamentos",
+  "category": "remarcacao_cancelamento",
+  "title": "Consulta de agendamentos agendados pelo cliente",
+  "description": "Cliente pergunta quais horários tem marcados na clínica. Agente chama get_past_schedules_list_tool e informa detalhes.",
+  "client": {
+    "name": "Gabriel",
+    "number": "5511999999999"
+  },
+  "has_previous_appointments": true,
+  "turns": [
+    {
+      "role": "user",
+      "content": "Oi Júlia! Não lembro qual dia marquei o banho do Floquinho, pode me lembrar?"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "get_past_schedules_list_tool"
+    ],
+    "target_step": "MANAGE_SCHEDULE",
+    "forbidden_tools": [
+      "cancel_schedule_tool",
+      "edit_schedule_tool"
+    ],
+    "criteria": [
+      "Agente chamou get_past_schedules_list_tool",
+      "Agente informou a data, horário e serviço do Floquinho",
+      "Não modificou nenhum dado"
+    ]
+  }
+}

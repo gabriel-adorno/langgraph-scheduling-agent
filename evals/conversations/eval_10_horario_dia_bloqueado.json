@@ -1,0 +1,45 @@
+{
+  "id": "eval_10_horario_dia_bloqueado",
+  "category": "horario_ocupado",
+  "title": "Dia bloqueado por feriado ou manutenção da clínica",
+  "description": "Cliente tenta marcar consulta em data registrada como feriado/bloqueada. Agente informa bloqueio e propõe dia seguinte.",
+  "client": {
+    "name": "Carla Perez",
+    "number": "5511972220005"
+  },
+  "initial_state": {
+    "step": "CHOOSE_DATE",
+    "client_info": {
+      "id": 1,
+      "name": "Carla",
+      "number": "5511972220005"
+    },
+    "schedule_info": {
+      "service_id": 2,
+      "pet_id": 1
+    }
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Queria marcar consulta pro dia 2026-12-25 às 10:00."
+    },
+    {
+      "role": "user",
+      "content": "Sem problemas! Podemos marcar para dia 2026-12-28 às 10:00 (segunda)?"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "check_availability_tool",
+      "choose_date_tool"
+    ],
+    "target_step": "CONFIRM_SCHEDULE",
+    "forbidden_tools": [],
+    "criteria": [
+      "Agente verificou disponibilidade",
+      "Não concluiu no feriado bloqueado",
+      "Aprovou a data útil subsequente"
+    ]
+  }
+}

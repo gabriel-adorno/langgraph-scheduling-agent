@@ -1,0 +1,30 @@
+{
+  "id": "eval_14_remarcacao_troca_de_servico",
+  "category": "remarcacao_cancelamento",
+  "title": "Remarcação alterando o serviço agendado",
+  "description": "Cliente quer manter a data mas trocar o serviço de banho para consulta veterinária.",
+  "client": {
+    "name": "Gabriel",
+    "number": "5511999999999"
+  },
+  "has_previous_appointments": true,
+  "turns": [
+    {
+      "role": "user",
+      "content": "Queria trocar meu agendamento: em vez de banho, preciso de uma consulta veterinária pro Floquinho no mesmo dia."
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "get_past_schedules_list_tool",
+      "edit_schedule_tool"
+    ],
+    "target_step": "MANAGE_SCHEDULE",
+    "forbidden_tools": [],
+    "criteria": [
+      "Agente localizou o agendamento anterior",
+      "Agente chamou edit_schedule_tool com o service_id atualizado",
+      "Confirmou a alteração do tipo de serviço"
+    ]
+  }
+}

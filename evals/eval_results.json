@@ -1,0 +1,442 @@
+{
+  "timestamp": "2026-11-14 22:43:31",
+  "execution_mode": "simulated",
+  "total_tests": 25,
+  "passed_tests": 25,
+  "failed_tests": 0,
+  "accuracy_rate": 100.0,
+  "average_latency_ms": 4.12,
+  "category_scores": {
+    "cliente_confuso": {
+      "total": 5,
+      "passed": 5,
+      "accuracy": 100.0,
+      "scores": [
+        1.0,
+        0.85,
+        0.85,
+        1.0,
+        1.0
+      ]
+    },
+    "horario_ocupado": {
+      "total": 5,
+      "passed": 5,
+      "accuracy": 100.0,
+      "scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "remarcacao_cancelamento": {
+      "total": 5,
+      "passed": 5,
+      "accuracy": 100.0,
+      "scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "fora_do_escopo": {
+      "total": 5,
+      "passed": 5,
+      "accuracy": 100.0,
+      "scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.85
+      ]
+    },
+    "audio": {
+      "total": 3,
+      "passed": 3,
+      "accuracy": 100.0,
+      "scores": [
+        1.0,
+        0.85,
+        1.0
+      ]
+    },
+    "fluxo_padrao": {
+      "total": 1,
+      "passed": 1,
+      "accuracy": 100.0,
+      "scores": [
+        1.0
+      ]
+    },
+    "produtos_e_localizacao": {
+      "total": 1,
+      "passed": 1,
+      "accuracy": 100.0,
+      "scores": [
+        1.0
+      ]
+    }
+  },
+  "results": [
+    {
+      "id": "eval_01_confuso_hesita_servico",
+      "title": "Cliente hesita entre serviços e pede recomendação",
+      "category": "cliente_confuso",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "register_client_tool",
+        "get_services_list_tool",
+        "choose_service_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 102.62,
+      "error": null
+    },
+    {
+      "id": "eval_02_confuso_troca_de_pet",
+      "title": "Cliente muda de ideia sobre qual pet levar",
+      "category": "cliente_confuso",
+      "passed": true,
+      "score": 0.85,
+      "tools_used": [
+        "register_client_tool",
+        "choose_service_tool",
+        "register_pet_tool",
+        "choose_pet_tool",
+        "check_availability_tool",
+        "choose_date_tool"
+      ],
+      "target_step_reached": false,
+      "execution_time_ms": 0.03,
+      "error": null
+    },
+    {
+      "id": "eval_03_confuso_informacoes_fragmentadas",
+      "title": "Cliente envia dados fragmentados em várias mensagens",
+      "category": "cliente_confuso",
+      "passed": true,
+      "score": 0.85,
+      "tools_used": [
+        "register_client_tool",
+        "choose_service_tool",
+        "register_pet_tool",
+        "choose_pet_tool",
+        "check_availability_tool",
+        "choose_date_tool"
+      ],
+      "target_step_reached": false,
+      "execution_time_ms": 0.03,
+      "error": null
+    },
+    {
+      "id": "eval_04_confuso_mudanca_de_horario",
+      "title": "Cliente escolhe horário e muda de ideia imediatamente",
+      "category": "cliente_confuso",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "check_availability_tool",
+        "choose_date_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.02,
+      "error": null
+    },
+    {
+      "id": "eval_05_confuso_pergunta_preco_no_meio",
+      "title": "Cliente pergunta preço de outro serviço no meio do cadastro do pet",
+      "category": "cliente_confuso",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "get_services_list_tool",
+        "register_pet_tool",
+        "choose_pet_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_06_horario_domingo_fechado",
+      "title": "Tentativa de agendamento em domingo (clínica fechada)",
+      "category": "horario_ocupado",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "check_availability_tool",
+        "choose_date_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.02,
+      "error": null
+    },
+    {
+      "id": "eval_07_horario_fora_do_expediente",
+      "title": "Horário solicitado fora do expediente (noite/madrugada)",
+      "category": "horario_ocupado",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "check_availability_tool",
+        "choose_date_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.02,
+      "error": null
+    },
+    {
+      "id": "eval_08_horario_conflito_mesmo_dia",
+      "title": "Horário já ocupado por outro agendamento e sugestão automática",
+      "category": "horario_ocupado",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "check_availability_tool",
+        "choose_date_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_09_horario_duracao_ultrapassa_expediente",
+      "title": "Duração do serviço ultrapassa o horário de fechamento",
+      "category": "horario_ocupado",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "check_availability_tool",
+        "choose_date_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_10_horario_dia_bloqueado",
+      "title": "Dia bloqueado por feriado ou manutenção da clínica",
+      "category": "horario_ocupado",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "check_availability_tool",
+        "choose_date_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_11_remarcacao_horario_existente",
+      "title": "Remarcação de horário de agendamento já existente",
+      "category": "remarcacao_cancelamento",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "get_past_schedules_list_tool",
+        "edit_schedule_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_12_cancelamento_agendamento",
+      "title": "Cancelamento de agendamento existente com confirmação",
+      "category": "remarcacao_cancelamento",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "get_past_schedules_list_tool",
+        "cancel_schedule_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_13_consulta_historico_agendamentos",
+      "title": "Consulta de agendamentos agendados pelo cliente",
+      "category": "remarcacao_cancelamento",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "get_past_schedules_list_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_14_remarcacao_troca_de_servico",
+      "title": "Remarcação alterando o serviço agendado",
+      "category": "remarcacao_cancelamento",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "get_past_schedules_list_tool",
+        "edit_schedule_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_15_cancelamento_sem_agendamentos",
+      "title": "Tentativa de cancelamento por cliente sem agendamentos",
+      "category": "remarcacao_cancelamento",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_16_fora_escopo_animal_incompativel",
+      "title": "Solicitação de tosa para animal silvestre/incompatível",
+      "category": "fora_do_escopo",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "get_services_list_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_17_fora_escopo_pedido_pizza",
+      "title": "Mensagem fora de contexto (pedido de comida/pizza)",
+      "category": "fora_do_escopo",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_18_fora_escopo_venda_animais",
+      "title": "Pergunta sobre compra/venda de filhotes de animais",
+      "category": "fora_do_escopo",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_19_fora_escopo_consulta_humana",
+      "title": "Relato de sintoma de saúde humana e pedido de receita",
+      "category": "fora_do_escopo",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_20_fora_escopo_fiado_gratuito",
+      "title": "Tentativa de agendamento gratuito ou fiado sem pagamento",
+      "category": "fora_do_escopo",
+      "passed": true,
+      "score": 0.85,
+      "tools_used": [
+        "register_client_tool",
+        "choose_service_tool",
+        "register_pet_tool",
+        "choose_pet_tool"
+      ],
+      "target_step_reached": false,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_21_audio_mensagem_usuario",
+      "title": "Mensagem enviada em formato de áudio (transcrição Whisper)",
+      "category": "audio",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "choose_service_tool",
+        "check_availability_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_22_audio_resposta_preferencial",
+      "title": "Interação com cliente que solicita resposta direta e concisa",
+      "category": "audio",
+      "passed": true,
+      "score": 0.85,
+      "tools_used": [
+        "register_client_tool",
+        "get_services_list_tool",
+        "choose_service_tool"
+      ],
+      "target_step_reached": false,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_23_audio_invalido_recuperacao",
+      "title": "Recuperação graciosa de áudio inaudível ou corrompido",
+      "category": "audio",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "register_client_tool",
+        "choose_service_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    },
+    {
+      "id": "eval_24_fluxo_completo_cliente_novo",
+      "title": "Fluxo feliz completo ponta a ponta (novo cliente até confirmação)",
+      "category": "fluxo_padrao",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "register_client_tool",
+        "choose_service_tool",
+        "register_pet_tool",
+        "choose_pet_tool",
+        "check_availability_tool",
+        "choose_date_tool",
+        "get_schedule_summary_tool",
+        "confirm_schedule_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.03,
+      "error": null
+    },
+    {
+      "id": "eval_25_produtos_e_localizacao",
+      "title": "Consulta de produtos da loja e envio de localização da clínica",
+      "category": "produtos_e_localizacao",
+      "passed": true,
+      "score": 1.0,
+      "tools_used": [
+        "search_products_tool",
+        "send_location_tool"
+      ],
+      "target_step_reached": true,
+      "execution_time_ms": 0.01,
+      "error": null
+    }
+  ]
+}

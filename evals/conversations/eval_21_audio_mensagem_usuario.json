@@ -1,0 +1,30 @@
+{
+  "id": "eval_21_audio_mensagem_usuario",
+  "category": "audio",
+  "title": "Mensagem enviada em formato de áudio (transcrição Whisper)",
+  "description": "Cliente envia áudio pedindo banho pro Floquinho. Sistema processa transcrição e responde de forma empática.",
+  "client": {
+    "name": "Gabriel",
+    "number": "5511999999999"
+  },
+  "turns": [
+    {
+      "role": "user",
+      "mode": "audio",
+      "content": "Oi Júlia, tudo bem? Tô mandando esse áudio porque tô dirigindo, queria marcar um banho pro Floquinho amanhã às dez da manhã."
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "choose_service_tool",
+      "check_availability_tool"
+    ],
+    "target_step": "CONFIRM_SCHEDULE",
+    "forbidden_tools": [],
+    "criteria": [
+      "Sistema identificou o modo áudio corretamente",
+      "Agente compreendeu a intenção falada do cliente",
+      "Deu andamento ao agendamento de forma fluida"
+    ]
+  }
+}

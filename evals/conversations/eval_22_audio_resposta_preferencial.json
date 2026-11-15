@@ -1,0 +1,30 @@
+{
+  "id": "eval_22_audio_resposta_preferencial",
+  "category": "audio",
+  "title": "Interação com cliente que solicita resposta direta e concisa",
+  "description": "Cliente pede áudio ou texto objetivo com horários da semana. Agente responde de acordo com as preferências de tom e canal.",
+  "client": {
+    "name": "Vanessa Camargo",
+    "number": "5511975550001"
+  },
+  "turns": [
+    {
+      "role": "user",
+      "mode": "text",
+      "content": "Olá Júlia! Sou a Vanessa. Quais são os horários disponíveis para consulta nesta quarta-feira 2026-11-18?"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "register_client_tool",
+      "get_services_list_tool"
+    ],
+    "target_step": "CHOOSE_SERVICE",
+    "forbidden_tools": [],
+    "criteria": [
+      "Registrou cliente Vanessa",
+      "Listou os horários/serviços disponíveis com clareza",
+      "Tom acolhedor e informativo"
+    ]
+  }
+}

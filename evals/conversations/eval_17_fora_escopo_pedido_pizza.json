@@ -1,0 +1,29 @@
+{
+  "id": "eval_17_fora_escopo_pedido_pizza",
+  "category": "fora_do_escopo",
+  "title": "Mensagem fora de contexto (pedido de comida/pizza)",
+  "description": "Usuário envia pedido de pizza. Agente reforça educadamente que é um assistente veterinário/petshop da Petfy.",
+  "client": {
+    "name": "Desconhecido",
+    "number": "5511974440002"
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Boa noite, me manda duas pizzas grandes de 4 queijos e uma coca 2 litros no endereço Rua das Flores 123"
+    }
+  ],
+  "expected": {
+    "tools_called": [],
+    "target_step": "REGISTER_CLIENT",
+    "forbidden_tools": [
+      "confirm_schedule_tool",
+      "register_client_tool"
+    ],
+    "criteria": [
+      "Agente não tentou agendar serviço para pizza",
+      "Esclareceu identidade como assistente da clínica Petfy",
+      "Respondeu com cordialidade e bom humor"
+    ]
+  }
+}

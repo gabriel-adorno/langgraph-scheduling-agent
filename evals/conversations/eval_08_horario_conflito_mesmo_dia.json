@@ -1,0 +1,45 @@
+{
+  "id": "eval_08_horario_conflito_mesmo_dia",
+  "category": "horario_ocupado",
+  "title": "Horário já ocupado por outro agendamento e sugestão automática",
+  "description": "Cliente solicita horário já reservado (15:00 na data com agendamento ativo). O agente detecta conflito e propõe o próximo horário disponível no mesmo dia.",
+  "client": {
+    "name": "Patricia Abravanel",
+    "number": "5511972220003"
+  },
+  "initial_state": {
+    "step": "CHOOSE_DATE",
+    "client_info": {
+      "id": 2,
+      "name": "Patricia",
+      "number": "5511972220003"
+    },
+    "schedule_info": {
+      "service_id": 1,
+      "pet_id": 1
+    }
+  },
+  "turns": [
+    {
+      "role": "user",
+      "content": "Gostaria de agendar para 2026-11-20 às 15:00."
+    },
+    {
+      "role": "user",
+      "content": "Entendi que 15h já está ocupado. Qual horário vago vc me sugeriu mesmo? Pode ser esse!"
+    }
+  ],
+  "expected": {
+    "tools_called": [
+      "check_availability_tool",
+      "choose_date_tool"
+    ],
+    "target_step": "CONFIRM_SCHEDULE",
+    "forbidden_tools": [],
+    "criteria": [
+      "check_availability_tool retornou available=False para 15:00",
+      "Agente informou que horário estava ocupado",
+      "Agente usou o slot alternativo válido"
+    ]
+  }
+}
