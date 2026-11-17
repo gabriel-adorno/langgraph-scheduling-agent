@@ -93,6 +93,8 @@ cp .env.example .env
 Adicione sua chave da OpenAI no `.env`:
 ```env
 OPENAI_API_KEY="sk-..."
+# opcional; padrão gpt-4o-mini
+LLM_MODEL=gpt-4o-mini
 ```
 
 ---
@@ -182,6 +184,8 @@ Tabela gerada em **2026-11-16 23:26:27** por `python evals/run_evals.py --live`,
 
 Detalhe em `evals/EVAL_REPORT.md` e `evals/eval_results.json`. O modo simulado desta suíte já havia marcado 25/25; isso **não** é o resultado live.
 
+**Custo:** o modo simulado não chama a API. O `--live` desta corrida (25 casos, `gpt-4o-mini`) levou cerca de **5 minutos** de relógio, com latência média de **12,1 s** por caso (`eval_results.json`). Cada turno do usuário dispara o grafo; respostas em texto ainda passam por `parse_agent_action` (segunda chamada ao mesmo modelo). Whisper/TTS só entram se o turno for áudio. Esta suíte **não registra tokens**, então não há valor em USD medido aqui.
+
 ---
 
 ## 📊 Grafo de execução
@@ -248,7 +252,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 ## 🛠️ Tecnologias Utilizadas
 
 - **LangGraph & LangChain**: Orquestração de grafos cíclicos com estado compartilhado.
-- **OpenAI GPT-4o-mini**: Modelo de linguagem para raciocínio e chamada de ferramentas (Function Calling).
+- **OpenAI (chat)**: modelo configurável por `LLM_MODEL` (padrão `gpt-4o-mini`) para raciocínio e function calling.
 - **OpenAI Whisper & TTS**: Transcrição e síntese de voz multimodal.
 - **FastAPI & Uvicorn**: API assíncrona para recebimento de webhooks.
 - **Pydantic**: Validação de esquemas de dados.

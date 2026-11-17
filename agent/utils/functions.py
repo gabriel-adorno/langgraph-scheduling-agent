@@ -40,11 +40,15 @@ def has_repeated_user_messages(messages: list, threshold: int = 3) -> bool:
     return len(set(user_messages[:threshold])) == 1
 
 
+def get_llm_model() -> str:
+    return os.getenv("LLM_MODEL", "gpt-4o-mini")
+
+
 def get_llm(api_key: str = None):
     global llm
     effective_key = api_key or os.getenv("OPENAI_API_KEY")
     if llm is None or api_key:
-        llm = ChatOpenAI(model="gpt-4o-mini", api_key=effective_key)
+        llm = ChatOpenAI(model=get_llm_model(), api_key=effective_key)
     return llm
 
 

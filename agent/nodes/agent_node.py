@@ -4,7 +4,7 @@ from langchain_openai import ChatOpenAI
 
 from agent.states.all_states import AgentState, DBMessage
 from agent.utils.prompts import get_prompt
-from agent.utils.functions import parse_agent_action
+from agent.utils.functions import parse_agent_action, get_llm_model
 from agent.db.whatsapp_functions import send_message
 from database.services import AgentConfigService
 from agent.tools.all_tools import all_tools
@@ -21,7 +21,7 @@ def agent(state: AgentState) -> AgentState:
     api_key = AgentConfigService.get_effective_openai_key(org_id)
     system_prompt = SystemMessage(content=get_prompt(state))
 
-    llm = ChatOpenAI(model="gpt-4o-mini", api_key=api_key).bind_tools(all_tools)
+    llm = ChatOpenAI(model=get_llm_model(), api_key=api_key).bind_tools(all_tools)
     response = llm.invoke([system_prompt] + list(state["messages"]))
 
     print(f"📍 ETAPA ATUAL: {state.get('step')}")
