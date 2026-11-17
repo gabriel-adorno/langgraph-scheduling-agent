@@ -235,6 +235,16 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 
 ---
 
+## Limitações
+
+- **Um provedor de LLM:** chat (`gpt-4o-mini` por padrão), transcrição (Whisper) e TTS passam pela API da OpenAI. Sem a chave, o agente de produção não roda.
+- **Escopo:** o prompt não tem uma política explícita de recusa; pedidos fora de petshop/agendamento dependem do modelo. Imagens chegam como `[image_not_processed]`.
+- **Agenda local:** persistência em JSON de um único processo; não há multi-clínica, pagamento, prontuário nem calendário Google.
+- **WhatsApp:** Evolution API é opcional; sem ela as respostas ficam no terminal.
+- **Evals `--live`:** o harness mede tools no estado, não a qualidade do texto; casos com `initial_state` no JSON ainda começam pelo estado persistido daquele número em `data/`.
+
+---
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **LangGraph & LangChain**: Orquestração de grafos cíclicos com estado compartilhado.
