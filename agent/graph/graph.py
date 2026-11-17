@@ -36,3 +36,8 @@ graph.add_edge("agent", "reset_state")
 graph.add_edge("reset_state", END)
 
 app = graph.compile()
+
+
+def get_graph():
+    """Compiled StateGraph used at runtime (same object as `app`)."""
+    return app

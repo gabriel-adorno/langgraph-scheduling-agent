@@ -184,15 +184,30 @@ Detalhe em `evals/EVAL_REPORT.md` e `evals/eval_results.json`. O modo simulado d
 
 ---
 
-## 📊 Visualizador de Arquitetura (`visualize.py`)
+## 📊 Grafo de execução
 
-Para gerar e abrir o diagrama interativo do grafo:
+Diagrama gerado a partir do grafo compilado (`get_graph().get_graph().draw_mermaid()` em `agent/graph/graph.py`). `should_use_tool` desvia para `tool` se a última mensagem tem `tool_calls`; senão segue `end_edge` para o fim. O código também liga `agent → reset_state → end`. O nó `tool` é um `ToolNode` com as 15 tools.
 
-```bash
-python visualize.py
+```mermaid
+graph TD
+    __start__([start])
+    agent(agent)
+    tool(tool)
+    tool_executer(tool_executer)
+    update_step(update_step)
+    reset_state(reset_state)
+    __end__([end])
+    __start__ --> agent
+    agent -. end_edge .-> __end__
+    agent --> reset_state
+    agent -. tool_edge .-> tool
+    tool --> tool_executer
+    tool_executer --> update_step
+    update_step --> agent
+    reset_state --> __end__
 ```
 
-Gera o arquivo `graph_flow.html` com o diagrama de execução em SVG e explicação detalhada da tomada de decisão `should_use_tool`.
+`python visualize.py` gera `graph_flow.html` (SVG ilustrativo, não exportado pelo LangGraph).
 
 ---
 
