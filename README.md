@@ -15,7 +15,7 @@ Esta versão é **100% autônoma e local**: utiliza arquivos JSON como camada de
   - Gravação de áudio em tempo real pelo microfone no terminal (`/gravar`).
   - Geração de resposta em áudio com **OpenAI TTS** e reprodução automática via alto-falantes.
   - A reprodução de áudio só é acionada quando o agente responde com mensagem de voz.
-- **🧪 Benchmark de Avaliação (`evals/`)**: Suíte completa com **25 cenários reais de atendimento** (cliente confuso, restrições de agenda, cancelamentos, multimodal, pedidos fora do escopo) com **100% de taxa de acerto**.
+- **🧪 Benchmark de Avaliação (`evals/`)**: Suíte com **25 cenários escritos à mão** (cliente confuso, restrições de agenda, cancelamentos, multimodal, pedidos fora do escopo). Há modo simulado (offline) e modo `--live` contra a API da OpenAI.
 - **📊 Visualizador de Fluxo (`visualize.py`)**: Interface interativa que renderiza o grafo de execução em SVG com navegação passo a passo.
 
 ---
@@ -49,7 +49,7 @@ langgraph-scheduling-agent/
 │   └── services.py              # Interface de serviços de dados
 │
 ├── evals/                       # 🧪 Framework de Benchmark e Testes
-│   ├── conversations/           # 25 cenários reais de teste em JSON
+│   ├── conversations/           # 25 cenários de teste em JSON (escritos à mão)
 │   ├── evaluator.py             # Motor de validação de intenções, steps e tools
 │   ├── run_evals.py             # Script de execução do benchmark
 │   └── EVAL_REPORT.md           # Relatório consolidado de resultados
@@ -151,13 +151,13 @@ actions using tools when needed.
 
 ## 🧪 Suíte de Avaliação (`evals/`)
 
-O projeto inclui um framework de avaliação que testa o comportamento do agente em **25 cenários reais**:
+Os **25 cenários** em `evals/conversations/` foram escritos à mão (não gerados por um LLM na hora da avaliação). O modo padrão **não chama o agente nem a OpenAI**: percorre os JSONs com um motor de palavras-chave em `evals/evaluator.py`. O modo `--live` chama `process_message` (LangGraph + modelo). Se a API falhar, o harness cai no simulador.
 
 ```bash
-# Executar a suíte de 25 testes (modo simulado, instantâneo e offline)
+# Modo simulado (offline, sem LLM)
 python evals/run_evals.py
 
-# Executar em modo live (conectando à API OpenAI)
+# Modo live (API OpenAI; altera os JSON em data/)
 python evals/run_evals.py --live
 
 # Filtrar por categoria
@@ -165,17 +165,22 @@ python evals/run_evals.py --category cliente_confuso
 python evals/run_evals.py --category horario_ocupado
 ```
 
-### Resultados do Benchmark:
+### Resultados (modo `--live`)
+
+Tabela gerada em **2026-11-16 23:26:27** por `python evals/run_evals.py --live`, modelo **`gpt-4o-mini`** (valor então hardcoded em `agent/nodes/agent_node.py`). Nenhum caso caiu no fallback simulado. No live, o harness considera PASS se as tools esperadas aparecem no estado e nenhuma tool proibida foi vista; **não** avalia o texto dos `criteria` nem o passo-alvo.
+
 | Categoria | Casos | Taxa de Acerto |
 |---|:---:|:---:|
-| 🤔 Cliente Confuso / Hesitante | 5 | 100.0% |
-| 📅 Horário Ocupado / Restrições | 5 | 100.0% |
-| 🔄 Remarcação e Cancelamento | 5 | 100.0% |
-| 🚫 Pedidos Fora do Escopo | 5 | 100.0% |
-| 🎙️ Áudio e Multimodal | 3 | 100.0% |
-| ✨ Fluxo Padrão Ponta a Ponta | 1 | 100.0% |
+| 🤔 Cliente Confuso / Hesitante | 5 | 40.0% |
+| 📅 Horário Ocupado / Restrições | 5 | 40.0% |
+| 🔄 Remarcação e Cancelamento | 5 | 60.0% |
+| 🚫 Pedidos Fora do Escopo | 5 | 60.0% |
+| 🎙️ Áudio e Multimodal | 3 | 0.0% |
+| ✨ Fluxo Padrão Ponta a Ponta | 1 | 0.0% |
 | 🛒 Produtos e Localização | 1 | 100.0% |
-| **Geral Consolidado** | **25** | **100.0%** |
+| **Geral** | **25** | **44.0%** (11/25) |
+
+Detalhe em `evals/EVAL_REPORT.md` e `evals/eval_results.json`. O modo simulado desta suíte já havia marcado 25/25; isso **não** é o resultado live.
 
 ---
 

@@ -1,76 +1,76 @@
 {
-  "timestamp": "2026-11-14 22:43:31",
-  "execution_mode": "simulated",
+  "timestamp": "2026-11-16 23:26:27",
+  "execution_mode": "live",
   "total_tests": 25,
-  "passed_tests": 25,
-  "failed_tests": 0,
-  "accuracy_rate": 100.0,
-  "average_latency_ms": 4.12,
+  "passed_tests": 11,
+  "failed_tests": 14,
+  "accuracy_rate": 44.0,
+  "average_latency_ms": 12100.25,
   "category_scores": {
     "cliente_confuso": {
       "total": 5,
-      "passed": 5,
-      "accuracy": 100.0,
+      "passed": 2,
+      "accuracy": 40.0,
       "scores": [
+        0.5,
         1.0,
-        0.85,
-        0.85,
         1.0,
-        1.0
+        0.5,
+        0.5
       ]
     },
     "horario_ocupado": {
       "total": 5,
-      "passed": 5,
-      "accuracy": 100.0,
+      "passed": 2,
+      "accuracy": 40.0,
       "scores": [
+        0.5,
         1.0,
+        0.5,
         1.0,
-        1.0,
-        1.0,
-        1.0
+        0.5
       ]
     },
     "remarcacao_cancelamento": {
       "total": 5,
-      "passed": 5,
-      "accuracy": 100.0,
+      "passed": 3,
+      "accuracy": 60.0,
       "scores": [
         1.0,
-        1.0,
-        1.0,
+        0.5,
+        0.5,
         1.0,
         1.0
       ]
     },
     "fora_do_escopo": {
       "total": 5,
-      "passed": 5,
-      "accuracy": 100.0,
+      "passed": 3,
+      "accuracy": 60.0,
       "scores": [
+        0.5,
         1.0,
         1.0,
         1.0,
-        1.0,
-        0.85
+        0.5
       ]
     },
     "audio": {
       "total": 3,
-      "passed": 3,
-      "accuracy": 100.0,
+      "passed": 0,
+      "accuracy": 0.0,
       "scores": [
-        1.0,
-        0.85,
-        1.0
+        0.5,
+        0.5,
+        0.5
       ]
     },
     "fluxo_padrao": {
       "total": 1,
-      "passed": 1,
-      "accuracy": 100.0,
+      "passed": 0,
+      "accuracy": 0.0,
       "scores": [
-        1.0
+        0.5
       ]
     },
     "produtos_e_localizacao": {
@@ -87,15 +87,13 @@
       "id": "eval_01_confuso_hesita_servico",
       "title": "Cliente hesita entre serviços e pede recomendação",
       "category": "cliente_confuso",
-      "passed": true,
-      "score": 1.0,
+      "passed": false,
+      "score": 0.5,
       "tools_used": [
-        "register_client_tool",
-        "get_services_list_tool",
-        "choose_service_tool"
+        "get_services_list_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 102.62,
+      "execution_time_ms": 20854.1,
       "error": null
     },
     {
@@ -103,17 +101,18 @@
       "title": "Cliente muda de ideia sobre qual pet levar",
       "category": "cliente_confuso",
       "passed": true,
-      "score": 0.85,
+      "score": 1.0,
       "tools_used": [
         "register_client_tool",
-        "choose_service_tool",
+        "get_services_list_tool",
+        "list_pets_tool",
         "register_pet_tool",
         "choose_pet_tool",
-        "check_availability_tool",
-        "choose_date_tool"
+        "choose_service_tool",
+        "get_schedule_summary_tool"
       ],
-      "target_step_reached": false,
-      "execution_time_ms": 0.03,
+      "target_step_reached": true,
+      "execution_time_ms": 31058.84,
       "error": null
     },
     {
@@ -121,60 +120,50 @@
       "title": "Cliente envia dados fragmentados em várias mensagens",
       "category": "cliente_confuso",
       "passed": true,
-      "score": 0.85,
+      "score": 1.0,
       "tools_used": [
         "register_client_tool",
+        "get_services_list_tool",
         "choose_service_tool",
+        "list_pets_tool",
         "register_pet_tool",
-        "choose_pet_tool",
-        "check_availability_tool",
-        "choose_date_tool"
+        "choose_pet_tool"
       ],
-      "target_step_reached": false,
-      "execution_time_ms": 0.03,
+      "target_step_reached": true,
+      "execution_time_ms": 28325.04,
       "error": null
     },
     {
       "id": "eval_04_confuso_mudanca_de_horario",
       "title": "Cliente escolhe horário e muda de ideia imediatamente",
       "category": "cliente_confuso",
-      "passed": true,
-      "score": 1.0,
-      "tools_used": [
-        "check_availability_tool",
-        "choose_date_tool"
-      ],
+      "passed": false,
+      "score": 0.5,
+      "tools_used": [],
       "target_step_reached": true,
-      "execution_time_ms": 0.02,
+      "execution_time_ms": 5204.92,
       "error": null
     },
     {
       "id": "eval_05_confuso_pergunta_preco_no_meio",
       "title": "Cliente pergunta preço de outro serviço no meio do cadastro do pet",
       "category": "cliente_confuso",
-      "passed": true,
-      "score": 1.0,
-      "tools_used": [
-        "get_services_list_tool",
-        "register_pet_tool",
-        "choose_pet_tool"
-      ],
+      "passed": false,
+      "score": 0.5,
+      "tools_used": [],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 6702.84,
       "error": null
     },
     {
       "id": "eval_06_horario_domingo_fechado",
       "title": "Tentativa de agendamento em domingo (clínica fechada)",
       "category": "horario_ocupado",
-      "passed": true,
-      "score": 1.0,
-      "tools_used": [
-        "check_availability_tool",
-        "choose_date_tool"
-      ],
+      "passed": false,
+      "score": 0.5,
+      "tools_used": [],
       "target_step_reached": true,
-      "execution_time_ms": 0.02,
+      "execution_time_ms": 5061.39,
       "error": null
     },
     {
@@ -184,25 +173,29 @@
       "passed": true,
       "score": 1.0,
       "tools_used": [
+        "get_services_list_tool",
         "check_availability_tool",
-        "choose_date_tool"
+        "choose_service_tool",
+        "choose_date_tool",
+        "list_pets_tool",
+        "register_client_tool",
+        "register_pet_tool",
+        "choose_pet_tool",
+        "get_schedule_summary_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 0.02,
+      "execution_time_ms": 28988.72,
       "error": null
     },
     {
       "id": "eval_08_horario_conflito_mesmo_dia",
       "title": "Horário já ocupado por outro agendamento e sugestão automática",
       "category": "horario_ocupado",
-      "passed": true,
-      "score": 1.0,
-      "tools_used": [
-        "check_availability_tool",
-        "choose_date_tool"
-      ],
+      "passed": false,
+      "score": 0.5,
+      "tools_used": [],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 5762.26,
       "error": null
     },
     {
@@ -212,25 +205,27 @@
       "passed": true,
       "score": 1.0,
       "tools_used": [
+        "get_services_list_tool",
         "check_availability_tool",
-        "choose_date_tool"
+        "choose_service_tool",
+        "choose_date_tool",
+        "get_schedule_summary_tool",
+        "list_pets_tool",
+        "register_client_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 22148.16,
       "error": null
     },
     {
       "id": "eval_10_horario_dia_bloqueado",
       "title": "Dia bloqueado por feriado ou manutenção da clínica",
       "category": "horario_ocupado",
-      "passed": true,
-      "score": 1.0,
-      "tools_used": [
-        "check_availability_tool",
-        "choose_date_tool"
-      ],
+      "passed": false,
+      "score": 0.5,
+      "tools_used": [],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 4725.84,
       "error": null
     },
     {
@@ -240,38 +235,47 @@
       "passed": true,
       "score": 1.0,
       "tools_used": [
+        "get_services_list_tool",
         "get_past_schedules_list_tool",
-        "edit_schedule_tool"
+        "edit_schedule_tool",
+        "get_schedule_summary_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 14527.26,
       "error": null
     },
     {
       "id": "eval_12_cancelamento_agendamento",
       "title": "Cancelamento de agendamento existente com confirmação",
       "category": "remarcacao_cancelamento",
-      "passed": true,
-      "score": 1.0,
+      "passed": false,
+      "score": 0.5,
       "tools_used": [
+        "get_services_list_tool",
         "get_past_schedules_list_tool",
+        "edit_schedule_tool",
+        "get_schedule_summary_tool",
         "cancel_schedule_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 11689.43,
       "error": null
     },
     {
       "id": "eval_13_consulta_historico_agendamentos",
       "title": "Consulta de agendamentos agendados pelo cliente",
       "category": "remarcacao_cancelamento",
-      "passed": true,
-      "score": 1.0,
+      "passed": false,
+      "score": 0.5,
       "tools_used": [
-        "get_past_schedules_list_tool"
+        "get_services_list_tool",
+        "get_past_schedules_list_tool",
+        "edit_schedule_tool",
+        "get_schedule_summary_tool",
+        "cancel_schedule_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 4386.44,
       "error": null
     },
     {
@@ -282,10 +286,14 @@
       "score": 1.0,
       "tools_used": [
         "get_past_schedules_list_tool",
-        "edit_schedule_tool"
+        "edit_schedule_tool",
+        "get_schedule_summary_tool",
+        "cancel_schedule_tool",
+        "get_services_list_tool",
+        "choose_service_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 6321.37,
       "error": null
     },
     {
@@ -294,22 +302,23 @@
       "category": "remarcacao_cancelamento",
       "passed": true,
       "score": 1.0,
-      "tools_used": [],
+      "tools_used": [
+        "get_past_schedules_list_tool",
+        "register_client_tool"
+      ],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 5335.95,
       "error": null
     },
     {
       "id": "eval_16_fora_escopo_animal_incompativel",
       "title": "Solicitação de tosa para animal silvestre/incompatível",
       "category": "fora_do_escopo",
-      "passed": true,
-      "score": 1.0,
-      "tools_used": [
-        "get_services_list_tool"
-      ],
+      "passed": false,
+      "score": 0.5,
+      "tools_used": [],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 7903.79,
       "error": null
     },
     {
@@ -320,7 +329,7 @@
       "score": 1.0,
       "tools_used": [],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 3643.21,
       "error": null
     },
     {
@@ -331,7 +340,7 @@
       "score": 1.0,
       "tools_used": [],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 3501.54,
       "error": null
     },
     {
@@ -342,86 +351,80 @@
       "score": 1.0,
       "tools_used": [],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 4000.52,
       "error": null
     },
     {
       "id": "eval_20_fora_escopo_fiado_gratuito",
       "title": "Tentativa de agendamento gratuito ou fiado sem pagamento",
       "category": "fora_do_escopo",
-      "passed": true,
-      "score": 0.85,
-      "tools_used": [
-        "register_client_tool",
-        "choose_service_tool",
-        "register_pet_tool",
-        "choose_pet_tool"
-      ],
-      "target_step_reached": false,
-      "execution_time_ms": 0.01,
+      "passed": false,
+      "score": 0.5,
+      "tools_used": [],
+      "target_step_reached": true,
+      "execution_time_ms": 3841.77,
       "error": null
     },
     {
       "id": "eval_21_audio_mensagem_usuario",
       "title": "Mensagem enviada em formato de áudio (transcrição Whisper)",
       "category": "audio",
-      "passed": true,
-      "score": 1.0,
+      "passed": false,
+      "score": 0.5,
       "tools_used": [
-        "choose_service_tool",
-        "check_availability_tool"
+        "get_services_list_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 11943.32,
       "error": null
     },
     {
       "id": "eval_22_audio_resposta_preferencial",
       "title": "Interação com cliente que solicita resposta direta e concisa",
       "category": "audio",
-      "passed": true,
-      "score": 0.85,
+      "passed": false,
+      "score": 0.5,
       "tools_used": [
-        "register_client_tool",
         "get_services_list_tool",
-        "choose_service_tool"
+        "check_availability_tool"
       ],
-      "target_step_reached": false,
-      "execution_time_ms": 0.01,
+      "target_step_reached": true,
+      "execution_time_ms": 18607.55,
       "error": null
     },
     {
       "id": "eval_23_audio_invalido_recuperacao",
       "title": "Recuperação graciosa de áudio inaudível ou corrompido",
       "category": "audio",
-      "passed": true,
-      "score": 1.0,
+      "passed": false,
+      "score": 0.5,
       "tools_used": [
         "register_client_tool",
-        "choose_service_tool"
+        "get_services_list_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 7052.73,
       "error": null
     },
     {
       "id": "eval_24_fluxo_completo_cliente_novo",
       "title": "Fluxo feliz completo ponta a ponta (novo cliente até confirmação)",
       "category": "fluxo_padrao",
-      "passed": true,
-      "score": 1.0,
+      "passed": false,
+      "score": 0.5,
       "tools_used": [
         "register_client_tool",
+        "get_services_list_tool",
         "choose_service_tool",
+        "list_pets_tool",
         "register_pet_tool",
         "choose_pet_tool",
         "check_availability_tool",
         "choose_date_tool",
-        "get_schedule_summary_tool",
-        "confirm_schedule_tool"
+        "get_schedule_summary_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 0.03,
+      "execution_time_ms": 32380.21,
       "error": null
     },
     {
@@ -435,7 +438,7 @@
         "send_location_tool"
       ],
       "target_step_reached": true,
-      "execution_time_ms": 0.01,
+      "execution_time_ms": 8539.11,
       "error": null
     }
   ]
