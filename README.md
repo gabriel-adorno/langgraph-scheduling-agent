@@ -23,7 +23,7 @@ Esta versão é **100% autônoma e local**: utiliza arquivos JSON como camada de
 ## 📁 Estrutura do Projeto
 
 ```
-agente_agendamento/
+langgraph-scheduling-agent/
 ├── agent/                       # Núcleo da lógica do agente (LangGraph)
 │   ├── db/                      # Funções de envio e integração (WhatsApp/Áudio)
 │   ├── graph/                   # Definição do StateGraph e pipeline de mensagens
@@ -59,6 +59,7 @@ agente_agendamento/
 ├── main.py                      # Servidor FastAPI para recepção de webhooks (Evolution API)
 ├── requirements.txt
 ├── .env.example
+├── LICENSE
 └── README.md
 ```
 
@@ -76,8 +77,8 @@ agente_agendamento/
 
 ### 2. Clonar e Instalar Dependências
 ```bash
-git clone https://github.com/gabriel-adorno/agente-agendamento-langgraph.git
-cd agente-agendamento-langgraph
+git clone https://github.com/gabriel-adorno/langgraph-scheduling-agent.git
+cd langgraph-scheduling-agent
 
 python -m venv venv
 source venv/bin/activate  # No Windows: venv\Scripts\activate
