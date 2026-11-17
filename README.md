@@ -115,6 +115,40 @@ python chat.py
 
 ---
 
+## Como os prompts são construídos
+
+A cada turno, `agent/nodes/agent_node.py` monta um `SystemMessage` com `get_prompt(state)` (`agent/utils/prompts.py`) e envia esse texto mais o histórico para o modelo, com as 15 tools. O prompt **não é um arquivo estático**.
+
+**Partes dinâmicas** (concatenadas nessa ordem):
+
+1. **Prompt-base** — papel (assistente de agendamento pet), tom, formato JSON de resposta (`mode`, `reply_to`, `content`) e regras de tool call.
+2. **Áudio** — só entra se `personality.audio_use == "none"`; nesse caso força `"mode": "text"`. Com o `data/agent_config.json` atual (`audio_use: "moderate"`), esse bloco **não** é incluído.
+3. **Personalidade e clínica** — nome do agente, clínica, tom, idioma, horário de funcionamento, timezone e data/hora local.
+4. **Nome do usuário** — só se `client_info.name` já existir no estado.
+5. **Instruções do passo atual** — `REGISTER_CLIENT`, `CHOOSE_SERVICE`, `CHOOSE_PET`, `CHOOSE_DATE` ou `CONFIRM_SCHEDULE`. O passo é definido pelo nó `update_step` (campos do estado), não pelo LLM. Outros valores de `step` deixam esse trecho vazio.
+6. **Agendamentos anteriores** — se `has_previous_appointments` for verdadeiro, inclui regras de listar / cancelar / remarcar; senão, diz que o usuário não tem agendamentos.
+
+**Regras de tools no prompt (por passo):** `register_client_tool` após o nome; em serviço, `get_services_list_tool` antes e `choose_service_tool` só após confirmação; em pet, `list_pets_tool` antes de falar com o usuário; em data, `check_availability_tool` antes de `choose_date_tool`; na confirmação, `get_schedule_summary_tool` ao entrar e `confirm_schedule_tool` só com confirmação explícita. Se o modelo anuncia uma tool, o prompt exige chamá-la no mesmo turno.
+
+**Fora de escopo:** o prompt de produção **não** tem um bloco de recusa. Há só o papel (“scheduling assistant … pet care”), “never invent data” e “only act through tools”. Recusar pizza, receita humana, etc. depende do modelo. Os casos `fora_do_escopo` estão nos JSONs de `evals/`; o modo simulado usa palavras-chave, não este prompt.
+
+Trecho fiel do prompt-base (sem dados de cliente):
+
+```
+You are an intelligent scheduling assistant specialized in managing pet care
+services like baths, grooming, and consultations.
+You talk naturally with users, understand their intent, and perform real
+actions using tools when needed.
+
+- Never invent data. If something isn’t known, ask the user politely.
+- You can only act through your tools — never assume results or make up data.
+- When you say you will use a tool, you MUST call it immediately in the same turn.
+- If calling a tool, do NOT return the JSON above.
+- Tool calls must follow the standard OpenAI tool-call format.
+```
+
+---
+
 ## 🧪 Suíte de Avaliação (`evals/`)
 
 O projeto inclui um framework de avaliação que testa o comportamento do agente em **25 cenários reais**:
